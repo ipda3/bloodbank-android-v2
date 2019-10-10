@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_layout_root"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_toast"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/dim_4dp">
+
+    <TextView
+        android:id="@+id/toast_tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dim_4dp"
+        android:layout_marginStart="@dimen/dim_4dp"
+        android:textColor="@color/error"
+        android:textSize="@dimen/txt_16sp" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/toast_iv_icon"
+        android:layout_width="@dimen/dim_24dp"
+        android:layout_height="@dimen/dim_24dp"
+        android:layout_marginEnd="@dimen/dim_4dp"
+        android:layout_marginStart="@dimen/dim_4dp"
+        android:background="@drawable/cancel" />
+
+</LinearLayout>

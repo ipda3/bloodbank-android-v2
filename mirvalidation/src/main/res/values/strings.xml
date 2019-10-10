@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">mirValidation</string>
+    <string name="invalid_email">Email must be like this \"example@example.com\"</string>
+</resources>
