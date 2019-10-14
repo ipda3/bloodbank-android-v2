@@ -13,21 +13,22 @@ import com.reda.yehia.bloodbankv2.data.model.generalResponse.GeneralResponseData
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmptySpinnerAdapter extends BaseAdapter {
+public class SpinnerAdapter extends BaseAdapter {
 
     private Context context;
     private List<GeneralResponseData> generalResponseDataList = new ArrayList<>();
     private LayoutInflater inflter;
     public int selectedId = 0;
 
-    public EmptySpinnerAdapter(Context applicationContext) {
+    public SpinnerAdapter(Context applicationContext) {
         this.context = applicationContext;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     public void setData(List<GeneralResponseData> generalResponseDataList, String hint) {
-        this.generalResponseDataList = generalResponseDataList;
-        generalResponseDataList.add(new GeneralResponseData(0, hint));
+        this.generalResponseDataList = new ArrayList<>();
+        this.generalResponseDataList.add(new GeneralResponseData(0, hint));
+        this.generalResponseDataList.addAll(generalResponseDataList);
     }
 
     @Override

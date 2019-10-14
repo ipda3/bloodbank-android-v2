@@ -6,19 +6,27 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fontFamily">@font/acme</item>
     </style>
 
-    <style name="text_input" >
+    <style name="text_toolbar_title">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:textSize">@dimen/dim_30sp</item>
+    </style>
+
+    <style name="text_input">
         <item name="android:background">@drawable/shape_et</item>
         <item name="android:textColor">@color/txt_color</item>
         <item name="android:textColorHint">@color/txt_color</item>
         <item name="android:layout_marginTop">@dimen/dim_4dp</item>
         <item name="android:layout_marginBottom">@dimen/dim_4dp</item>
-        <item name="android:layout_marginStart">@dimen/dim_8dp</item>
-        <item name="android:layout_marginEnd">@dimen/dim_8dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_12dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_12dp</item>
     </style>
 
-    <style name="text_input_edit" >
+    <style name="text_input_edit">
         <item name="android:background">@null</item>
         <item name="android:textColor">@color/txt_color</item>
         <item name="android:drawablePadding">@dimen/dim_8dp</item>
@@ -28,6 +36,23 @@
         <item name="android:layout_marginStart">@dimen/dim_8dp</item>
         <item name="android:layout_marginEnd">@dimen/dim_8dp</item>
         <item name="android:padding">@dimen/dim_4dp</item>
+    </style>
+
+    <style name="donation_tv">
+        <item name="android:layout_marginStart">@dimen/dim_40dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_24dp</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textColor">@color/txt_color</item>
+        <item name="android:textSize">@dimen/txt_14sp</item>
+    </style>
+
+    <style name="btn">
+        <item name="android:layout_marginTop">@dimen/dim_8dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_8dp</item>
+        <item name="android:background">@drawable/shape_et</item>
+        <item name="android:textColor">@color/txt_color</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

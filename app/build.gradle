@@ -43,5 +43,12 @@ dependencies {
 
     //Transparent statusBar
     implementation 'com.jaeger.statusbarutil:library:1.5.1'
+
     implementation project(path: ':mirvalidation')
+    implementation project(path: ':mirToast')
+    implementation project(path: ':mirslider')
+    implementation project(path: ':mir-keyboard-listener')
+
+    implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
+
 }

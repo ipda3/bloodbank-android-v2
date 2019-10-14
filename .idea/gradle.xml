@@ -9,7 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/mir-keyboard-listener" />
             <option value="$PROJECT_DIR$/mirToast" />
+            <option value="$PROJECT_DIR$/mirslider" />
             <option value="$PROJECT_DIR$/mirvalidation" />
             <option value="$PROJECT_DIR$/recyclemirtool" />
           </set>

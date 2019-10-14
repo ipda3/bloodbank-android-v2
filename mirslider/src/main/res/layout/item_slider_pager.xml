@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="2.5">
+
+    <ImageView
+        android:id="@+id/slider_adapter_iv_slider_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/slider_adapter_tv_slider_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dim_8dp"
+        android:layout_weight="1.2"
+        android:textSize="@dimen/txt_16sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dim_4dp"
+        android:layout_weight=".3"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/slider_adapter_ll_slider_steps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_toStartOf="@id/slider_adapter_btn_slider_next"
+            android:orientation="horizontal" />
+
+        <Button
+            android:id="@+id/slider_adapter_btn_slider_next"
+            android:layout_width="@dimen/dim_60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@null"
+            android:layout_marginEnd="@dimen/dim_8dp"
+            android:layout_marginStart="@dimen/dim_8dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

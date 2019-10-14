@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jaeger.library.StatusBarUtil;
 import com.reda.yehia.bloodbankv2.R;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
-import com.reda.yehia.bloodbankv2.view.fragment.userCycle.RegistersAndEditProfileFragment;
 
 import static com.reda.yehia.bloodbankv2.utils.HelperMethod.replaceFragment;
 
@@ -23,14 +23,24 @@ public class SplashFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        new Handler().postDelayed(new Runnable(){
+        View inflate = inflater.inflate(R.layout.fragment_splash, container, false);
+        StatusBarUtil.setTranslucent(getActivity());
+
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, new RegistersAndEditProfileFragment());
+                replaceFragment(getActivity().getSupportFragmentManager(), R.id.frame, new SliderFragment()
+                );
 
             }
         }, 3000);
-        return inflater.inflate(R.layout.fragment_splash, container, false);
+
+
+        return inflate;
     }
 
+    @Override
+    public void onBack() {
+        getActivity().finish();
+    }
 }

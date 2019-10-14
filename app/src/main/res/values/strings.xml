@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">BloodBankV2</string>
+    <string name="app_name">بنك الدم</string>
     <string name="location">اختيار الموقع</string>
     <string name="GPSAlertDialogTitle">تنبيه</string>
     <string name="GPSAlertDialogMessage">برجاء تشغيل محدد المواقع</string>
@@ -13,5 +13,29 @@
     <string name="select_blood_type">Select blood type</string>
     <string name="wait">Please wait....</string>
     <string name="select_date">Select date</string>
+    <string name="invalid_user_name">Username mast be more than 3 cher</string>
+    <string name="invalid_password">Username mast be more than 6 of cher and number</string>
+    <string name="invalid_brd">Please select your birthday</string>
+    <string name="invalid_last_date">Please select your last donation date</string>
+    <string name="select_city">Select city</string>
+    <string name="select_government">Select government</string>
+    <string name="city">City</string>
+    <string name="hospital">Hospital</string>
+    <string name="patient_name">Patient name</string>
+    <string name="error">Something went wrong</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="birthday">Birthday</string>
+    <string name="last_donation">Last donation</string>
+    <string name="phone">Phone</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="profile">Profile</string>
+    <string name="save">Save</string>
+    <string name="don_t_have_account_you_can_register_from_her">Don\'t have account? You can register from her</string>
+    <string name="login">Login</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="slider1">الصحة هي مستوى الكفاءة الوظيفية والأيضية للكائن الحي، أما عند الإنسان فالصحة لدى الأفراد والمجتمعات وفقا لتعريف منظمة الصحة العالمية في إعلان لمبادئ الرعاية الصحية الأولية عام 1978. هي حالة من اكتمال السلامة البدنية والعقلية والإجتماعية وليس مجرد غياب أو إنعدام للمرض أو العجز.</string>
 
 </resources>

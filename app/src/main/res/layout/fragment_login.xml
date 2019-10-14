@@ -1,6 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_fragment_rl_sub_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/login_fragment_til_phone"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/dim_8dp"
+                android:src="@drawable/ic_logo_white" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/login_fragment_til_phone"
+                style="@style/text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <android.support.design.widget.TextInputEditText
+                    style="@style/text_input_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone"
+                    android:inputType="phone" />
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/login_fragment_til_password"
+                style="@style/text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_fragment_til_phone">
+
+                <android.support.design.widget.TextInputEditText
+                    style="@style/text_input_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password"
+                    android:inputType="textPassword" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:id="@+id/login_fragment_cb_remember"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_fragment_til_password"
+                android:layout_marginEnd="@dimen/dim_8dp"
+                android:layout_marginStart="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_8dp"
+                android:text="@string/remember_me"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_14sp"
+                android:textStyle="normal" />
+
+            <TextView
+                android:id="@+id/login_fragment_tv_forget_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/login_fragment_cb_remember"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/login_fragment_cb_remember"
+                android:layout_below="@id/login_fragment_til_password"
+                android:layout_marginEnd="@dimen/dim_8dp"
+                android:layout_marginStart="@dimen/dim_8dp"
+                android:gravity="center_vertical"
+                android:text="@string/forget_password"
+                android:textColor="@color/white"
+                android:textSize="@dimen/txt_14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/login_fragment_btn_login"
+                style="@style/btn"
+                android:layout_width="@dimen/dim_150dp"
+                android:layout_height="@dimen/dim_40dp"
+                android:layout_below="@id/login_fragment_cb_remember"
+                android:layout_centerHorizontal="true"
+                android:text="@string/login" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/login_fragment_tv_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red_t"
+        android:gravity="center"
+        android:padding="@dimen/dim_10dp"
+        android:text="@string/don_t_have_account_you_can_register_from_her"
+        android:textColor="@color/txt_color" />
+
+</RelativeLayout>

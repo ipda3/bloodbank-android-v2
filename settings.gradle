@@ -1,1 +1,1 @@
-include ':app', ':mirToast', ':mirvalidation', ':recyclemirtool'
+include ':app', ':mirToast', ':mirvalidation', ':recyclemirtool', ':mirslider', ':mir-keyboard-listener'

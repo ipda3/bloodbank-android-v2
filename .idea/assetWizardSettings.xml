@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_logo" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../oneDownLoads/sofra/Group83.svg" />
+                            <entry key="outputName" value="ic_next" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../oneDownLoads/sofra/next.svg" />
                           </map>
                         </option>
                       </PersistentState>

@@ -1,20 +1,25 @@
 package com.reda.yehia.bloodbankv2.view.fragment.userCycle;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.jaeger.library.StatusBarUtil;
 import com.reda.yehia.bloodbankv2.R;
-import com.reda.yehia.bloodbankv2.adapter.EmptySpinnerAdapter;
+import com.reda.yehia.bloodbankv2.adapter.SpinnerAdapter;
 import com.reda.yehia.bloodbankv2.data.model.DateTxt;
+import com.reda.yehia.bloodbankv2.data.model.client.Client;
+import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
 import com.reda.yehia.bloodbankv2.utils.HelperMethod;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
+import com.reda.yehia.mirtoast.ToastCreator;
 import com.reda.yehia.mirvalidation.Validation;
 
 import java.text.DecimalFormat;
@@ -26,12 +31,20 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import retrofit2.Call;
 
 import static com.reda.yehia.bloodbankv2.data.api.RetrofitClient.getClient;
+import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.LoadData;
+import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.USER_PASSWORD;
+import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.loadUserData;
 import static com.reda.yehia.bloodbankv2.utils.GeneralRequest.getSpinnerData;
+import static com.reda.yehia.bloodbankv2.utils.GeneralRequest.userData;
 import static com.reda.yehia.bloodbankv2.utils.HelperMethod.showCalender;
+import static com.reda.yehia.mirvalidation.Validation.validationConfirmPassword;
 import static com.reda.yehia.mirvalidation.Validation.validationEmail;
 import static com.reda.yehia.mirvalidation.Validation.validationLength;
+import static com.reda.yehia.mirvalidation.Validation.validationPassword;
+import static com.reda.yehia.mirvalidation.Validation.validationPhone;
 
 public class RegistersAndEditProfileFragment extends BaseFragment {
 
@@ -57,10 +70,18 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
     Spinner registersAndEditProfileFragmentSpGovernments;
     @BindView(R.id.registers_and_edit_profile_fragment_sp_city)
     Spinner registersAndEditProfileFragmentSpCity;
+    @BindView(R.id.registers_and_edit_profile_fragment_ll_container_city)
+    LinearLayout registersAndEditProfileFragmentLlContainerCity;
+    @BindView(R.id.registers_and_edit_profile_fragment_btn_start_call)
+    Button registersAndEditProfileFragmentBtnStartCall;
     Unbinder unbinder;
 
-    private EmptySpinnerAdapter bloodTypesAdapter, gaviermentAdapter, CitiesAdapter;
+    private SpinnerAdapter bloodTypesAdapter, governmentsAdapter, citiesAdapter;
     private DateTxt birthdayDate, lastDonationDate;
+    private int bloodTypesSelectedId = 0, governmentSelectedId = 0, citiesSelectedId = 0;
+
+    private ClientData clientData;
+    public boolean PROFILE = false;
 
     public RegistersAndEditProfileFragment() {
         // Required empty public constructor
@@ -72,21 +93,45 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_registers_and_edit_profile, container, false);
         unbinder = ButterKnife.bind(this, view);
+        StatusBarUtil.setTranslucent(getActivity());
 
-        bloodTypesAdapter = new EmptySpinnerAdapter(getActivity());
+        if (PROFILE) {
+            clientData = loadUserData(getActivity());
+            setUserData();
+        }
+
+        bloodTypesAdapter = new SpinnerAdapter(getActivity());
         getSpinnerData(getActivity(), registersAndEditProfileFragmentSpBloodTypes, bloodTypesAdapter, getString(R.string.select_blood_type),
-                getClient().getBloodTypes(), true);
+                getClient().getBloodTypes(), null, bloodTypesSelectedId);
 
-
-        gaviermentAdapter = new EmptySpinnerAdapter(getActivity());
-        CitiesAdapter = new EmptySpinnerAdapter(getActivity());
-        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpGovernments, gaviermentAdapter, getString(R.string.select_blood_type),
-                getClient().getGovernorates(), registersAndEditProfileFragmentSpCity, CitiesAdapter, getString(R.string.select_blood_type),
-                getClient().getCities(gaviermentAdapter.selectedId));
+        governmentsAdapter = new SpinnerAdapter(getActivity());
+        citiesAdapter = new SpinnerAdapter(getActivity());
+        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpGovernments, governmentsAdapter, getString(R.string.select_blood_type),
+                getClient().getGovernorates(), governmentSelectedId, registersAndEditProfileFragmentSpCity, citiesAdapter, getString(R.string.select_blood_type),
+                getClient().getCities(governmentsAdapter.selectedId), registersAndEditProfileFragmentLlContainerCity, citiesSelectedId);
 
         setDates();
 
         return view;
+    }
+
+    private void setUserData() {
+        bloodTypesSelectedId = clientData.getClient().getBloodType().getId();
+        governmentSelectedId = clientData.getClient().getCity().getGovernorate().getId();
+        citiesSelectedId = clientData.getClient().getCity().getId();
+
+        registersAndEditProfileFragmentTilUserName.getEditText().setText(clientData.getClient().getName());
+        registersAndEditProfileFragmentTilEmail.getEditText().setText(clientData.getClient().getEmail());
+        registersAndEditProfileFragmentTilPhone.getEditText().setText(clientData.getClient().getPhone());
+        registersAndEditProfileFragmentTilPassword.getEditText().setText(LoadData(getActivity(), USER_PASSWORD));
+        registersAndEditProfileFragmentTilConfirmPassword.getEditText().setText(LoadData(getActivity(), USER_PASSWORD));
+
+        registersAndEditProfileFragmentTvBrd.setText(clientData.getClient().getBirthDate());
+        registersAndEditProfileFragmentTvLastDonationDate.setText(clientData.getClient().getDonationLastDate());
+
+        registersAndEditProfileFragmentTvTitle.setText(getString(R.string.profile));
+        registersAndEditProfileFragmentBtnStartCall.setText(getString(R.string.save));
+
     }
 
     private void setDates() {
@@ -99,8 +144,6 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         lastDonationDate = new DateTxt(cDay, cMonth, cYear, cDay + "-" + cMonth + "-" + cYear);
         birthdayDate = new DateTxt("01", "01", "1990", "01-01-1990");
 
-        registersAndEditProfileFragmentTvBrd.setText(birthdayDate.getDate_txt());
-        registersAndEditProfileFragmentTvLastDonationDate.setText(lastDonationDate.getDate_txt());
     }
 
     @Override
@@ -143,16 +186,48 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         spinners.add(registersAndEditProfileFragmentSpGovernments);
         spinners.add(registersAndEditProfileFragmentSpCity);
 
-        Validation.validationAllEmpty(editTexts, textInputLayouts, spinners);
+        if (!Validation.validationAllEmpty(editTexts, textInputLayouts, spinners)) {
 
-        validationLength(registersAndEditProfileFragmentTilUserName, "");
-        validationEmail(getActivity(), registersAndEditProfileFragmentTilEmail);
+            return;
+        }
 
+        if (!validationLength(registersAndEditProfileFragmentTilUserName, getString(R.string.invalid_user_name), 3)) {
+            return;
+        }
+
+        if (!validationEmail(getActivity(), registersAndEditProfileFragmentTilEmail)) {
+
+            return;
+        }
 
         onCall();
     }
 
     private void onCall() {
+        String name = registersAndEditProfileFragmentTilUserName.getEditText().getText().toString();
+        String email = registersAndEditProfileFragmentTilEmail.getEditText().getText().toString();
+        String phone = registersAndEditProfileFragmentTilPhone.getEditText().getText().toString();
+        String password = registersAndEditProfileFragmentTilPassword.getEditText().getText().toString();
+        String passwordConfirmation = registersAndEditProfileFragmentTilConfirmPassword.getEditText().getText().toString();
 
+        String birth_date = registersAndEditProfileFragmentTvBrd.getText().toString();
+        String donationLastDate = registersAndEditProfileFragmentTvLastDonationDate.getText().toString();
+
+        int cityId = citiesAdapter.selectedId;
+        int bloodTypeId = bloodTypesAdapter.selectedId;
+
+        Call<Client> clientCall;
+        boolean auth;
+
+        if (PROFILE) {
+            auth = false;
+            clientCall = getClient().onSignUp(name, email, birth_date, cityId, phone, donationLastDate, password, passwordConfirmation, bloodTypeId);
+        } else {
+            auth = true;
+            clientCall = getClient().editClientData(name, email, birth_date, cityId, phone, donationLastDate, password
+                    , passwordConfirmation, bloodTypeId, clientData.getApiToken());
+        }
+
+        userData(getActivity(), clientCall, password, true, auth);
     }
 }

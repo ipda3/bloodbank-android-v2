@@ -1,7 +1,5 @@
 package com.reda.yehia.bloodbankv2.view.activity;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.reda.yehia.bloodbankv2.R;

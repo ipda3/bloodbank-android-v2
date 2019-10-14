@@ -3,6 +3,7 @@
     android:id="@+id/registers_and_edit_profile_fragment_ll_sub_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -21,8 +22,10 @@
             android:layout_alignBottom="@id/toolbar"
             android:layout_alignParentTop="true"
             android:gravity="center"
-            android:text="@string/cancel"
-            android:textSize="@dimen/txt_20sp" />
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/txt_20sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -46,7 +49,8 @@
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo" />
+                    android:drawableStart="@drawable/ic_logo"
+                    android:hint="@string/name" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -62,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_logo"
+                    android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -82,7 +87,8 @@
                         style="@style/text_input_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_logo" />
+                        android:drawableStart="@drawable/ic_logo"
+                        android:hint="@string/birthday" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -98,7 +104,8 @@
                         style="@style/text_input_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_logo" />
+                        android:drawableStart="@drawable/ic_logo"
+                        android:hint="@string/last_donation" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -155,11 +162,13 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/registers_and_edit_profile_fragment_ll_container_city"
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dim_40dp"
                     android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:layout_width="@dimen/dim_24dp"
@@ -190,6 +199,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_logo"
+                    android:hint="@string/phone"
                     android:inputType="phone" />
 
             </android.support.design.widget.TextInputLayout>
@@ -206,6 +216,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_logo"
+                    android:hint="@string/password"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
@@ -222,18 +233,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_logo"
+                    android:hint="@string/confirm_password"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/registers_and_edit_profile_fragment_btn_start_call"
+                style="@style/btn"
                 android:layout_width="@dimen/dim_150dp"
                 android:layout_height="@dimen/dim_40dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/dim_4dp"
-                android:layout_marginTop="@dimen/dim_4dp"
-                android:background="@drawable/shape_et"
                 android:text="@string/register" />
 
         </LinearLayout>

@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 
     <ImageView
-        android:layout_width="@dimen/dim_logo"
-        android:layout_height="@dimen/dim_logo"
-        android:src="@drawable/ic_logo"
-        android:layout_centerInParent="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_250dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/dim_n_10dp"
+        android:layout_marginStart="@dimen/dim_n_20dp"
+        android:layout_marginTop="@dimen/dim_n_30dp"
+        android:background="@drawable/splash_t" />
+
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dim_logo"
+            android:layout_height="@dimen/dim_logo"
+            android:layout_marginStart="@dimen/dim_16dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dim_12dp"
+            android:fontFamily="@font/shekari_font"
+            android:text="@string/app_name"
+            android:textColor="@color/txt_color2"
+            android:textSize="@dimen/txt_30sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dim_220dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dim_n_20dp"
+        android:layout_marginEnd="@dimen/dim_n_30dp"
+        android:layout_marginStart="@dimen/dim_n_30dp"
+        android:background="@drawable/splash_b" />
 
 </RelativeLayout>
