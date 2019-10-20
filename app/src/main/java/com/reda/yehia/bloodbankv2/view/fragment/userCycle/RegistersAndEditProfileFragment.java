@@ -1,10 +1,13 @@
 package com.reda.yehia.bloodbankv2.view.fragment.userCycle;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -20,7 +23,6 @@ import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
 import com.reda.yehia.bloodbankv2.utils.HelperMethod;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 import com.reda.yehia.mirtoast.ToastCreator;
-import com.reda.yehia.mirvalidation.Validation;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,7 +41,9 @@ import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.USER
 import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.loadUserData;
 import static com.reda.yehia.bloodbankv2.utils.GeneralRequest.getSpinnerData;
 import static com.reda.yehia.bloodbankv2.utils.GeneralRequest.userData;
+import static com.reda.yehia.bloodbankv2.utils.HelperMethod.replaceFragment;
 import static com.reda.yehia.bloodbankv2.utils.HelperMethod.showCalender;
+import static com.reda.yehia.mirvalidation.Validation.validationAllEmpty;
 import static com.reda.yehia.mirvalidation.Validation.validationConfirmPassword;
 import static com.reda.yehia.mirvalidation.Validation.validationEmail;
 import static com.reda.yehia.mirvalidation.Validation.validationLength;
@@ -74,7 +78,13 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
     LinearLayout registersAndEditProfileFragmentLlContainerCity;
     @BindView(R.id.registers_and_edit_profile_fragment_btn_start_call)
     Button registersAndEditProfileFragmentBtnStartCall;
+    @BindView(R.id.registers_and_edit_profile_fragment_til_brd)
+    TextInputLayout registersAndEditProfileFragmentTilBrd;
+    @BindView(R.id.registers_and_edit_profile_fragment_til_last_donation_date)
+    TextInputLayout registersAndEditProfileFragmentTilLastDonationDate;
     Unbinder unbinder;
+    @BindView(R.id.registers_and_edit_profile_fragment_ll_sub_view_bg)
+    LinearLayout registersAndEditProfileFragmentLlSubViewBg;
 
     private SpinnerAdapter bloodTypesAdapter, governmentsAdapter, citiesAdapter;
     private DateTxt birthdayDate, lastDonationDate;
@@ -82,6 +92,7 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
 
     private ClientData clientData;
     public boolean PROFILE = false;
+    private AdapterView.OnItemSelectedListener listener;
 
     public RegistersAndEditProfileFragment() {
         // Required empty public constructor
@@ -96,23 +107,54 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         StatusBarUtil.setTranslucent(getActivity());
 
         if (PROFILE) {
+            setUpActivity();
             clientData = loadUserData(getActivity());
             setUserData();
+            homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+            homeCycleActivity.setToolBar(View.GONE, null, null);
+
+            registersAndEditProfileFragmentTvTitle.setBackgroundColor(getResources().getColor(R.color.txt_color2));
+            registersAndEditProfileFragmentLlSubViewBg.setBackgroundColor(getResources().getColor(R.color.ptofile));
         }
 
-        bloodTypesAdapter = new SpinnerAdapter(getActivity());
-        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpBloodTypes, bloodTypesAdapter, getString(R.string.select_blood_type),
-                getClient().getBloodTypes(), null, bloodTypesSelectedId);
-
-        governmentsAdapter = new SpinnerAdapter(getActivity());
-        citiesAdapter = new SpinnerAdapter(getActivity());
-        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpGovernments, governmentsAdapter, getString(R.string.select_blood_type),
-                getClient().getGovernorates(), governmentSelectedId, registersAndEditProfileFragmentSpCity, citiesAdapter, getString(R.string.select_blood_type),
-                getClient().getCities(governmentsAdapter.selectedId), registersAndEditProfileFragmentLlContainerCity, citiesSelectedId);
+        setSpinner();
 
         setDates();
 
+        registersAndEditProfileFragmentTilPassword.getEditText().setTypeface(Typeface.DEFAULT);
+        registersAndEditProfileFragmentTilPassword.getEditText().setTransformationMethod(new PasswordTransformationMethod());
+        registersAndEditProfileFragmentTilConfirmPassword.getEditText().setTypeface(Typeface.DEFAULT);
+        registersAndEditProfileFragmentTilConfirmPassword.getEditText().setTransformationMethod(new PasswordTransformationMethod());
+
         return view;
+    }
+
+    private void setSpinner() {
+        bloodTypesAdapter = new SpinnerAdapter(getActivity());
+        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpBloodTypes, bloodTypesAdapter, getString(R.string.select_blood_type),
+                getClient().getBloodTypes(), null, bloodTypesSelectedId, true);
+
+        governmentsAdapter = new SpinnerAdapter(getActivity());
+        citiesAdapter = new SpinnerAdapter(getActivity());
+        listener = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i != 0) {
+                    getSpinnerData(getActivity(), registersAndEditProfileFragmentSpCity, citiesAdapter, getString(R.string.select_city)
+                            , getClient().getCities(governmentsAdapter.selectedId), registersAndEditProfileFragmentLlContainerCity, citiesSelectedId, true);
+                } else {
+                    registersAndEditProfileFragmentLlContainerCity.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+
+        getSpinnerData(getActivity(), registersAndEditProfileFragmentSpGovernments, governmentsAdapter, getString(R.string.select_government),
+                getClient().getGovernorates(), governmentSelectedId, listener);
     }
 
     private void setUserData() {
@@ -186,9 +228,17 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         spinners.add(registersAndEditProfileFragmentSpGovernments);
         spinners.add(registersAndEditProfileFragmentSpCity);
 
-        if (!Validation.validationAllEmpty(editTexts, textInputLayouts, spinners)) {
+        if (!validationAllEmpty(editTexts, textInputLayouts, spinners, getString(R.string.empty)) &&
+                registersAndEditProfileFragmentTvBrd.getText().toString().equals("") &&
+                registersAndEditProfileFragmentTvLastDonationDate.getText().toString().equals("")) {
 
+            registersAndEditProfileFragmentTilBrd.setError(getString(R.string.empty));
+            registersAndEditProfileFragmentTilLastDonationDate.setError(getString(R.string.empty));
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.empty));
             return;
+        } else {
+            registersAndEditProfileFragmentTilBrd.setErrorEnabled(false);
+            registersAndEditProfileFragmentTilLastDonationDate.setErrorEnabled(false);
         }
 
         if (!validationLength(registersAndEditProfileFragmentTilUserName, getString(R.string.invalid_user_name), 3)) {
@@ -197,6 +247,43 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
 
         if (!validationEmail(getActivity(), registersAndEditProfileFragmentTilEmail)) {
 
+            return;
+        }
+
+        if (!validationLength(getActivity(), registersAndEditProfileFragmentTvBrd.getText().toString().trim()
+                , getString(R.string.invalid_brd))) {
+            return;
+        }
+
+        if (!validationLength(getActivity(), registersAndEditProfileFragmentTvLastDonationDate.getText().toString().trim()
+                , getString(R.string.invalid_last_date))) {
+            return;
+        }
+
+        if (registersAndEditProfileFragmentSpBloodTypes.getSelectedItemPosition() == 0) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_blood_type));
+            return;
+        }
+
+        if (registersAndEditProfileFragmentSpGovernments.getSelectedItemPosition() == 0) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_government));
+            return;
+        }
+
+        if (registersAndEditProfileFragmentSpCity.getSelectedItemPosition() == 0) {
+            ToastCreator.onCreateErrorToast(getActivity(), getString(R.string.select_city));
+            return;
+        }
+
+        if (!validationPhone(getActivity(), registersAndEditProfileFragmentTilPhone)) {
+            return;
+        }
+
+        if (!validationPassword(registersAndEditProfileFragmentTilPassword, 6, getString(R.string.invalid_password))) {
+            return;
+        }
+
+        if (!validationConfirmPassword(getActivity(), registersAndEditProfileFragmentTilPassword, registersAndEditProfileFragmentTilConfirmPassword)) {
             return;
         }
 
@@ -219,15 +306,25 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
         Call<Client> clientCall;
         boolean auth;
 
-        if (PROFILE) {
-            auth = false;
+        if (!PROFILE) {
+            auth = true;
             clientCall = getClient().onSignUp(name, email, birth_date, cityId, phone, donationLastDate, password, passwordConfirmation, bloodTypeId);
         } else {
-            auth = true;
+            auth = false;
             clientCall = getClient().editClientData(name, email, birth_date, cityId, phone, donationLastDate, password
                     , passwordConfirmation, bloodTypeId, clientData.getApiToken());
         }
 
         userData(getActivity(), clientCall, password, true, auth);
+    }
+
+    @Override
+    public void onBack() {
+        if (PROFILE) {
+            replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_cycle_activity_fl_home_frame
+                    , homeCycleActivity.homeContainerFragment);
+        } else {
+            super.onBack();
+        }
     }
 }

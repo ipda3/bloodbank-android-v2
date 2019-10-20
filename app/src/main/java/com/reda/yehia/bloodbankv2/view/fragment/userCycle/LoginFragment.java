@@ -1,7 +1,9 @@
 package com.reda.yehia.bloodbankv2.view.fragment.userCycle;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,9 @@ import com.reda.yehia.bloodbankv2.utils.HelperMethod;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 import com.rw.keyboardlistener.KeyboardUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -24,6 +29,10 @@ import retrofit2.Call;
 import static com.reda.yehia.bloodbankv2.data.api.RetrofitClient.getClient;
 import static com.reda.yehia.bloodbankv2.utils.GeneralRequest.userData;
 import static com.reda.yehia.bloodbankv2.utils.HelperMethod.replaceFragment;
+import static com.reda.yehia.mirvalidation.Validation.cleanError;
+import static com.reda.yehia.mirvalidation.Validation.validationPassword;
+import static com.reda.yehia.mirvalidation.Validation.validationPhone;
+import static com.reda.yehia.mirvalidation.Validation.validationTextInputLayoutListEmpty;
 
 public class LoginFragment extends BaseFragment {
 
@@ -36,6 +45,9 @@ public class LoginFragment extends BaseFragment {
     @BindView(R.id.login_fragment_tv_register)
     TextView loginFragmentTvRegister;
     Unbinder unbinder;
+
+
+    List<TextInputLayout> textInputLayoutList = new ArrayList<>();
 
     public LoginFragment() {
         // Required empty public constructor
@@ -50,6 +62,12 @@ public class LoginFragment extends BaseFragment {
         StatusBarUtil.setTranslucent(getActivity());
 
         addKeyboardToggleListener();
+
+        textInputLayoutList.add(loginFragmentTilPhone);
+        textInputLayoutList.add(loginFragmentTilPassword);
+
+        loginFragmentTilPassword.getEditText().setTypeface(Typeface.DEFAULT);
+        loginFragmentTilPassword.getEditText().setTransformationMethod(new PasswordTransformationMethod());
 
         return view;
     }
@@ -96,6 +114,20 @@ public class LoginFragment extends BaseFragment {
     }
 
     private void onValidData() {
+
+        cleanError(textInputLayoutList);
+
+        if (!validationTextInputLayoutListEmpty(textInputLayoutList, getString(R.string.empty))) {
+            return;
+        }
+
+        if (!validationPhone(getActivity(), loginFragmentTilPhone)) {
+            return;
+        }
+
+        if (!validationPassword(loginFragmentTilPassword, 6, getString(R.string.invalid_password))) {
+            return;
+        }
 
         onCall();
     }

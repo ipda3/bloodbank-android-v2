@@ -1,5 +1,5 @@
 
-package com.reda.yehia.bloodbankv2.data.model.donationRequests;
+package com.reda.yehia.bloodbankv2.data.model.donation.donationRequests;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import com.reda.yehia.bloodbankv2.R;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 
-public class HomeContinerFragment extends BaseFragment {
+public class MoreFragment extends BaseFragment {
 
 
-    public HomeContinerFragment() {
+    public MoreFragment() {
         // Required empty public constructor
     }
 

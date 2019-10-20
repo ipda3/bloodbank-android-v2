@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/toolbar" />
+
+    <include layout="@layout/fragment_donation_details_shimmer" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_name"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_age"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_blood_type"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_count"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_hospital"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_address"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_phone"
+                style="@style/text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                style="@style/view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_1dp" />
+
+            <TextView
+                android:id="@+id/donation_details_fragment_tv_notes"
+                style="@style/text_view2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/donation_details_fragment_mv_map"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dim_180dp"
+                android:layout_marginEnd="@dimen/dim_8dp"
+                android:layout_marginStart="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_4dp" />
+
+            <Button
+                android:id="@+id/donation_details_fragment_btn_call"
+                style="@style/btn2"
+                android:layout_width="@dimen/dim_150dp"
+                android:layout_height="@dimen/dim_40dp"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/call" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

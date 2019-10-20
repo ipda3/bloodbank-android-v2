@@ -18,8 +18,6 @@ public class ViewPagerWithFragmentAdapter extends FragmentPagerAdapter {
         super(fragmentManager);
         fragments = new ArrayList<>();
         fragmentsTitle = new ArrayList<>();
-
-
     }
 
     public void addPager(Fragment fragments, String fragmentTitle) {

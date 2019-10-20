@@ -18,7 +18,7 @@
 
             <Spinner
                 android:id="@+id/donations_list_Fragment_sp_blood_types"
-                style="@style/text_input_edit"
+                style="@style/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal" />
@@ -34,7 +34,7 @@
 
             <Spinner
                 android:id="@+id/donations_list_Fragment_sp_government"
-                style="@style/text_input_edit"
+                style="@style/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal" />

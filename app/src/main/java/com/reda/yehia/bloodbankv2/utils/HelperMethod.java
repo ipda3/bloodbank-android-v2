@@ -243,4 +243,14 @@ public class HelperMethod {
         return check;
     }
 
+
+//    public static void changeLang(Context context) {
+//        Resources res = context.getResources();
+//        // Change locale settings in the app.
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        android.content.res.Configuration conf = res.getConfiguration();
+//        conf.setLocale(new Locale(LoadStringData((Activity) context, USER_LANG))); // API 17+ only.
+//        // Use conf.locale = new Locale(...) if targeting lower versions
+//        res.updateConfiguration(conf, dm);
+//    }
 }

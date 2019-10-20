@@ -12,9 +12,7 @@ import com.reda.yehia.bloodbankv2.R;
 
 import butterknife.ButterKnife;
 
-public class
-
-EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> {
+public class EmptyAdapter extends RecyclerView.Adapter<EmptyAdapter.ViewHolder> {
     private Context context;
     private Activity activity;
 //    private List<RestaurantClientData> restaurantDataList = new ArrayList<>();

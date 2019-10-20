@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/donation_details_fragment_s_fl_shimmer_donations"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            android:id="@+id/donation_details_fragment_tv_phone"
+            style="@style/text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            style="@style/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_1dp" />
+
+        <TextView
+            style="@style/text_view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_150dp"
+            android:layout_marginEnd="@dimen/dim_8dp"
+            android:layout_marginStart="@dimen/dim_8dp"
+            android:layout_marginTop="@dimen/dim_4dp"
+            android:background="@drawable/map" />
+
+        <Button
+            style="@style/btn2"
+            android:layout_width="@dimen/dim_150dp"
+            android:layout_height="@dimen/dim_40dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/call" />
+
+    </LinearLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
+

@@ -36,6 +36,14 @@
     <dimen name="dim_n_20dp">-20dp</dimen>
     <dimen name="dim_n_30dp">-30dp</dimen>
     <dimen name="dim_35dp">35dp</dimen>
-
+    <dimen name="dim_180dp">180dp</dimen>
+    <dimen name="dim_50dp">50dp</dimen>
+    <dimen name="dim_n_8dp">-8dp</dimen>
+    <dimen name="dim_45dp">45dp</dimen>
+    <dimen name="dim_14dp">14dp</dimen>
+    <dimen name="txt_10sp">10sp</dimen>
+    <dimen name="dim_notification_space">33dp</dimen>
+    <dimen name="dim_n_50dp">-50dp</dimen>
+    <dimen name="dim_260dp">260dp</dimen>
 
 </resources>

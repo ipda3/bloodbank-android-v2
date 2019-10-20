@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b4000d</color>
-    <color name="colorPrimaryDark">#d11724</color>
+    <color name="colorPrimary">#9A0B0B</color>
+    <color name="colorPrimaryDark">#9A0B0B</color>
     <color name="colorAccent">#FF4081</color>
     <color name="txt_color">#ac5254</color>
     <color name="txt_color2">#b4000d</color>
     <color name="white">#fff</color>
     <color name="red_t">#bbcec3c3</color>
     <color name="gray">#e5e5e5</color>
+    <color name="gray2">#5d7a7c</color>
+    <color name="black">#000</color>
     <color name="slider_bg">#fefefe</color>
+    <color name="txt_color3">#ED5107</color>
+    <color name="navigation_select_color">#c2c2c1</color>
+    <color name="navigation_color">#9A0B0B</color>
+    <color name="ptofile">#fefefe</color>
+    <color name="txt_color4">#ED5107</color>
+
 </resources>

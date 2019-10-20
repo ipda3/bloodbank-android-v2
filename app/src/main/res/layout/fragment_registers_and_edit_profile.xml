@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/registers_and_edit_profile_fragment_ll_sub_view"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/registers_and_edit_profile_fragment_ll_sub_view_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login"
@@ -35,6 +36,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:id="@+id/registers_and_edit_profile_fragment_ll_sub_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -43,13 +45,14 @@
                 android:id="@+id/registers_and_edit_profile_fragment_til_user_name"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo"
+                    android:drawableStart="@drawable/ic_user_regular"
                     android:hint="@string/name" />
 
             </android.support.design.widget.TextInputLayout>
@@ -59,13 +62,14 @@
                 android:id="@+id/registers_and_edit_profile_fragment_til_email"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo"
+                    android:drawableStart="@drawable/ic_email"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress" />
 
@@ -77,6 +81,7 @@
                 android:orientation="horizontal">
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registers_and_edit_profile_fragment_til_brd"
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,13 +92,15 @@
                         style="@style/text_input_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_logo"
+                        android:layout_gravity="center"
+                        android:drawableStart="@drawable/ic_calendar_week_solid"
                         android:hint="@string/birthday" />
 
                 </android.support.design.widget.TextInputLayout>
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/registers_and_edit_profile_fragment_til_last_donation_date"
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,7 +111,7 @@
                         style="@style/text_input_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableStart="@drawable/ic_logo"
+                        android:drawableStart="@drawable/ic_calendar_week_solid"
                         android:hint="@string/last_donation" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -122,11 +129,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginEnd="@dimen/dim_8dp"
                     android:layout_marginStart="@dimen/dim_10dp"
-                    android:src="@drawable/ic_logo" />
+                    android:src="@drawable/ic_blood_drop" />
 
                 <Spinner
                     android:id="@+id/registers_and_edit_profile_fragment_sp_blood_types"
-                    style="@style/text_input_edit"
+                    style="@style/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_horizontal" />
@@ -150,13 +157,14 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="@dimen/dim_8dp"
                         android:layout_marginStart="@dimen/dim_10dp"
-                        android:src="@drawable/ic_logo" />
+                        android:src="@drawable/ic_home_solid" />
 
                     <Spinner
                         android:id="@+id/registers_and_edit_profile_fragment_sp_governments"
-                        style="@style/text_input_edit"
+                        style="@style/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/dim_1dp"
                         android:gravity="center_horizontal" />
 
                 </LinearLayout>
@@ -175,11 +183,11 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="@dimen/dim_8dp"
                         android:layout_marginStart="@dimen/dim_10dp"
-                        android:src="@drawable/ic_logo" />
+                        android:src="@drawable/ic_home_solid" />
 
                     <Spinner
                         android:id="@+id/registers_and_edit_profile_fragment_sp_city"
-                        style="@style/text_input_edit"
+                        style="@style/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center_horizontal" />
@@ -192,13 +200,14 @@
                 android:id="@+id/registers_and_edit_profile_fragment_til_phone"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo"
+                    android:drawableStart="@drawable/ic_call"
                     android:hint="@string/phone"
                     android:inputType="phone" />
 
@@ -209,15 +218,15 @@
                 android:id="@+id/registers_and_edit_profile_fragment_til_password"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo"
-                    android:hint="@string/password"
-                    android:inputType="textPassword" />
+                    android:drawableStart="@drawable/ic_lock_solid"
+                    android:hint="@string/password" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -226,15 +235,15 @@
                 android:id="@+id/registers_and_edit_profile_fragment_til_confirm_password"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/ic_logo"
-                    android:hint="@string/confirm_password"
-                    android:inputType="textPassword" />
+                    android:drawableStart="@drawable/ic_lock_solid"
+                    android:hint="@string/confirm_password" />
 
             </android.support.design.widget.TextInputLayout>
 

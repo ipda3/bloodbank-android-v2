@@ -4,4 +4,5 @@
     <string name="invalid_phone1">Phone number must be \ </string>
     <string name="invalid_phone2"> number</string>
     <string name="invalid_confirm_password">Confirm password not match</string>
+    <string name="empty">Fields are required</string>
 </resources>

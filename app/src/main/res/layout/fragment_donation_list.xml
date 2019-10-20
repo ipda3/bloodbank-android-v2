@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/donations_list_Fragment_ll_sub_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/fragment_donation_list_shimmer" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/donations_list_Fragment_sr_refresh_donations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dim_12dp">
+
+                <LinearLayout
+                    style="@style/text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dim_40dp"
+                    android:layout_marginEnd="@dimen/dim_8dp"
+                    android:layout_marginStart="@dimen/dim_8dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/donations_list_Fragment_sp_blood_types"
+                        style="@style/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/text_input"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dim_40dp"
+                    android:layout_marginEnd="@dimen/dim_8dp"
+                    android:layout_marginStart="@dimen/dim_4dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Spinner
+                        android:id="@+id/donations_list_Fragment_sp_government"
+                        style="@style/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/dim_40dp"
+                    android:layout_height="@dimen/dim_40dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/dim_8dp">
+
+                    <ImageButton
+                        android:layout_width="@dimen/dim_40dp"
+                        android:layout_height="@dimen/dim_40dp"
+                        android:background="@drawable/shape_circil" />
+
+                    <ImageButton
+                        android:layout_width="@dimen/dim_40dp"
+                        android:layout_height="@dimen/dim_40dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_search_solid" />
+
+                    <RelativeLayout
+                        android:id="@+id/donations_list_Fragment_rl_filter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/donations_list_Fragment_rv_donations"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/load_more"
+                    android:layout_marginTop="@dimen/dim_8dp" />
+
+                <include
+                    layout="@layout/item_load_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true" />
+
+                <include layout="@layout/error" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

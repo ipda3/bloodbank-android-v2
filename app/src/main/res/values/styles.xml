@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/acme</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:fontFamily">@font/yehia_font</item>
     </style>
 
     <style name="text_toolbar_title">
@@ -24,6 +24,24 @@
         <item name="android:layout_marginBottom">@dimen/dim_4dp</item>
         <item name="android:layout_marginStart">@dimen/dim_12dp</item>
         <item name="android:layout_marginEnd">@dimen/dim_12dp</item>
+        <item name="android:padding">@dimen/dim_4dp</item>
+    </style>
+
+    <style name="error_appearance">
+        <item name="android:textColor">@color/txt_color2</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColorHighlight">@color/txt_color2</item>
+        <item name="android:textColorHint">@color/txt_color2</item>
+        <item name="android:textColorLink">@color/txt_color2</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_input_without_margin">
+        <item name="android:background">@drawable/shape_et</item>
+        <item name="android:textColor">@color/txt_color</item>
+        <item name="android:textColorHint">@color/txt_color</item>
     </style>
 
     <style name="text_input_edit">
@@ -53,6 +71,73 @@
         <item name="android:background">@drawable/shape_et</item>
         <item name="android:textColor">@color/txt_color</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="btn2">
+        <item name="android:layout_marginTop">@dimen/dim_8dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_8dp</item>
+        <item name="android:background">@drawable/shape_et_2</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="text_view">
+        <item name="android:textColor">@color/txt_color</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_12dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_12dp</item>
+        <item name="android:textSize">@dimen/txt_16sp</item>
+        <item name="android:paddingTop">@dimen/dim_8dp</item>
+        <item name="android:paddingStart">@dimen/dim_4dp</item>
+        <item name="android:paddingEnd">@dimen/dim_4dp</item>
+        <item name="android:paddingBottom">@dimen/dim_8dp</item>
+    </style>
+
+    <style name="text_view2">
+        <item name="android:background">@drawable/shape_et</item>
+        <item name="android:textColor">@color/gray2</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_8dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_8dp</item>
+        <item name="android:textSize">@dimen/txt_16sp</item>
+        <item name="android:padding">@dimen/dim_8dp</item>
+    </style>
+
+    <style name="view">
+        <item name="android:background">@color/txt_color</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_8dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_8dp</item>
+        <item name="android:padding">@dimen/dim_4dp</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/txt_color</item>
+        <item name="android:drawablePadding">@dimen/dim_8dp</item>
+        <item name="android:textColorHint">@color/txt_color</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_8dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_8dp</item>
+        <item name="android:paddingStart">@dimen/dim_4dp</item>
+        <item name="android:paddingEnd">@dimen/dim_4dp</item>
+    </style>
+
+    <style name="bottom_navigation">
+        <item name="android:layout_marginStart">@dimen/dim_4dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_4dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_n_8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="bottom_navigation_select">
+        <item name="android:visibility">invisible</item>
+        <item name="android:layout_marginStart">@dimen/dim_24dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_24dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_4dp</item>
+        <item name="android:background">@color/navigation_select_color</item>
     </style>
 
 </resources>

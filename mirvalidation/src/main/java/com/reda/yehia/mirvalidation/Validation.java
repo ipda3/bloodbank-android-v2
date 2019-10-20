@@ -1,7 +1,9 @@
 package com.reda.yehia.mirvalidation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.design.widget.TextInputLayout;
+import android.telephony.TelephonyManager;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -19,6 +21,14 @@ public class Validation {
 
     private static String STRING_PATTERN = "^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]+$";
     private static String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    public static void cleanError(List<TextInputLayout> textInputLayoutList) {
+
+        for (int i = 0; i < textInputLayoutList.size(); i++) {
+            textInputLayoutList.get(i).setErrorEnabled(false);
+        }
+
+    }
 
     public static boolean validationLength(Activity activity, String text, String errorText) {
 
@@ -138,43 +148,43 @@ public class Validation {
             int convert = Integer.parseInt(text.getEditText().getText().toString());
             return true;
         } catch (Exception e) {
-            text.setError(errorText);
+            text.getEditText().setError(errorText);
             return false;
         }
     }
 
-    public static boolean validationEditTextsEmpty(List<EditText> editTexts) {
+    public static boolean validationEditTextsEmpty(List<EditText> editTexts, String errorText) {
 
         List<Boolean> booleans = new ArrayList<>();
 
         for (int i = 0; i < editTexts.size(); i++) {
-            if (editTexts.get(i).length() <= 0) {
+            if (!validationLength(editTexts.get(i), errorText)) {
                 booleans.add(false);
             } else {
                 booleans.add(true);
             }
         }
 
-        if (booleans.contains(false)) {
+        if (booleans.contains(false) && !booleans.contains(true)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public static boolean validationTextInputLayoutListEmpty(List<TextInputLayout> textInputLayoutList) {
+    public static boolean validationTextInputLayoutListEmpty(List<TextInputLayout> textInputLayoutList, String errorText) {
 
         List<Boolean> booleans = new ArrayList<>();
 
         for (int i = 0; i < textInputLayoutList.size(); i++) {
-            if (textInputLayoutList.get(i).getEditText().length() <= 0) {
+            if (!validationLength(textInputLayoutList.get(i), errorText)) {
                 booleans.add(false);
             } else {
                 booleans.add(true);
             }
         }
 
-        if (booleans.contains(false)) {
+        if (booleans.contains(false) && !booleans.contains(true)) {
             return false;
         } else {
             return true;
@@ -193,16 +203,17 @@ public class Validation {
             }
         }
 
-        if (booleans.contains(false)) {
+        if (booleans.contains(false) && !booleans.contains(true)) {
             return false;
         } else {
             return true;
         }
     }
 
-    public static boolean validationAllEmpty(List<EditText> editTexts, List<TextInputLayout> textInputLayouts, List<Spinner> spinners) {
+    public static boolean validationAllEmpty(List<EditText> editTexts, List<TextInputLayout> textInputLayouts, List<Spinner> spinners, String errorText) {
 
-        if (validationEditTextsEmpty(editTexts) && validationTextInputLayoutListEmpty(textInputLayouts) && validationSpinnersEmpty(spinners)) {
+        if (validationEditTextsEmpty(editTexts, errorText) && validationTextInputLayoutListEmpty(textInputLayouts, errorText)
+                && validationSpinnersEmpty(spinners)) {
             return true;
         } else {
             return false;
@@ -210,7 +221,9 @@ public class Validation {
     }
 
     public static boolean validationPhone(Activity activity, String phone) {
-        String locale = activity.getResources().getConfiguration().locale.getCountry();
+
+        TelephonyManager manager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String locale = manager.getSimCountryIso().toUpperCase();
 
         Country country = new Country();
 
@@ -228,7 +241,9 @@ public class Validation {
     }
 
     public static boolean validationPhone(Activity activity, EditText phone) {
-        String locale = activity.getResources().getConfiguration().locale.getCountry();
+
+        TelephonyManager manager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String locale = manager.getSimCountryIso().toUpperCase();
 
         Country country = new Country();
 
@@ -245,7 +260,9 @@ public class Validation {
     }
 
     public static boolean validationPhone(Activity activity, TextInputLayout phone) {
-        String locale = activity.getResources().getConfiguration().locale.getCountry();
+
+        TelephonyManager manager = (TelephonyManager) activity.getSystemService(Context.TELEPHONY_SERVICE);
+        String locale = manager.getSimCountryIso().toUpperCase();
 
         Country country = new Country();
 
@@ -256,7 +273,7 @@ public class Validation {
         if (phone1.length() >= country1.getLength_min() && phone.getEditText().getText().length() <= country1.getLength_max()) {
             return true;
         } else {
-            phone.getEditText().setError(activity.getString(R.string.invalid_phone1) + " " + country1.getLength_min()
+            phone.setError(activity.getString(R.string.invalid_phone1) + " " + country1.getLength_min()
                     + " " + activity.getString(R.string.invalid_phone2));
             return false;
         }
@@ -287,7 +304,7 @@ public class Validation {
     public static boolean validationEmail(Activity activity, TextInputLayout email) {
 
         if (!email.getEditText().getText().toString().matches(EMAIL_PATTERN)) {
-            email.setError(activity.getString(R.string.invalid_email));
+            email.getEditText().setError(activity.getString(R.string.invalid_email));
             return false;
         } else {
             return true;
@@ -313,10 +330,12 @@ public class Validation {
 
     public static boolean validationPassword(TextInputLayout password, int length, String errorText) {
 
-        validationLength(password, errorText, length);
-        validationStringIsCharAndNumber(password, errorText);
+        if (validationLength(password, errorText, length) || validationStringIsCharAndNumber(password, errorText)) {
+            return true;
+        } else {
+            return false;
+        }
 
-        return true;
     }
 
     public static boolean validationConfirmPassword(Activity activity, String password, String confirmPassword) {
@@ -345,7 +364,7 @@ public class Validation {
         if (password.getEditText().getText().toString().equals(confirmPassword.getEditText().getText().toString())) {
             return true;
         } else {
-            confirmPassword.setError(activity.getString(R.string.invalid_confirm_password));
+            confirmPassword.getEditText().setError(activity.getString(R.string.invalid_confirm_password));
             return false;
         }
 
