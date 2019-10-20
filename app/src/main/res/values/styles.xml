@@ -140,4 +140,14 @@
         <item name="android:background">@color/navigation_select_color</item>
     </style>
 
+    <style name="text_input_orange">
+        <item name="android:background">@drawable/shape_et</item>
+        <item name="android:textColor">@color/txt_color3</item>
+        <item name="android:textColorHint">@color/txt_color3</item>
+        <item name="android:layout_marginTop">@dimen/dim_4dp</item>
+        <item name="android:layout_marginBottom">@dimen/dim_4dp</item>
+        <item name="android:layout_marginStart">@dimen/dim_12dp</item>
+        <item name="android:layout_marginEnd">@dimen/dim_12dp</item>
+    </style>
+
 </resources>

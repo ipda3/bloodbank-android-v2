@@ -46,4 +46,7 @@
     <dimen name="dim_n_50dp">-50dp</dimen>
     <dimen name="dim_260dp">260dp</dimen>
 
+    <dimen name="txt_18sp">18sp</dimen>
+    <dimen name="txt_24sp">26sp</dimen>
+
 </resources>
