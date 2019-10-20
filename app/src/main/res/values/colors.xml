@@ -17,4 +17,10 @@
     <color name="ptofile">#fefefe</color>
     <color name="txt_color4">#ED5107</color>
 
+    <color name="face">#0789ed</color>
+    <color name="instagram">#7c57b6</color>
+    <color name="twitter">#1da1f2</color>
+    <color name="youtube">#e60d0d</color>
+    <color name="btn_red">#c10000</color>
+
 </resources>

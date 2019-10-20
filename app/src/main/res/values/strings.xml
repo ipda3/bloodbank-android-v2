@@ -66,4 +66,24 @@
     <string name="error_inter_net">No internet connection, Please check your internet connection try again later</string>
     <string name="reload">reload</string>
 
+    <string name="enter_phone_number">enter phone number</string>
+    <string name="change_password_code">change_password_code</string>
+    <string name="pin_code">pin code</string>
+    <string name="new_password">new password</string>
+    <string name="new_password_confirmation">password confirmation</string>
+    <string name="enter_pin_code">enter pin code</string>
+    <string name="enter_password">enter password</string>
+    <string name="enter_password_confirm">enter password confirmation</string>
+    <string name="message_title">message title</string>
+    <string name="message_content">message content</string>
+    <string name="blood_types">blood types</string>
+    <string name="governorates">governorates</string>
+    <string name="favourites">favourites</string>
+    <string name="contact_us">contact us</string>
+    <string name="about_app">about app</string>
+    <string name="rate_app">raet on play store</string>
+    <string name="notifications_settings">notifications settings</string>
+    <string name="sign_out">sign out</string>
+    <string name="search_keyword">enter search keyword</string>
+
 </resources>
