@@ -19,15 +19,17 @@
                 android:layout_height="@dimen/dim_150dp"
                 android:layout_margin="@dimen/dim_8dp"
                 android:background="@drawable/shape_grey_shadow"
-                android:padding="@dimen/dim_8dp"
-                android:textColor="@color/txt_color"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/dim_12dp"
+                android:text="Please select the governorates and blood types you want to be notified of their donations via notifications"
+                android:textColor="@color/txt_color2"
                 android:textSize="@dimen/txt_20sp" />
 
             <RelativeLayout
                 android:id="@+id/notification_settings_fragment_rel_bloods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/notification_settings_fragment_tv_title"
+                android:layout_below="@+id/notification_settings_fragment_tv_title"
                 android:layout_marginStart="@dimen/dim_8dp"
                 android:layout_marginTop="@dimen/dim_8dp"
                 android:layout_marginEnd="@dimen/dim_8dp">
@@ -38,7 +40,9 @@
                     android:layout_height="@dimen/dim_150dp"
                     android:layout_marginTop="@dimen/dim_16dp"
                     android:background="@drawable/shape_et"
+                    android:paddingStart="@dimen/dim_8dp"
                     android:paddingTop="@dimen/dim_24dp"
+                    android:paddingEnd="@dimen/dim_8dp"
                     android:visibility="gone">
 
                     <android.support.v7.widget.RecyclerView
@@ -92,7 +96,9 @@
                     android:layout_height="@dimen/dim_150dp"
                     android:layout_marginTop="@dimen/dim_16dp"
                     android:background="@drawable/shape_et"
+                    android:paddingStart="@dimen/dim_8dp"
                     android:paddingTop="@dimen/dim_24dp"
+                    android:paddingEnd="@dimen/dim_8dp"
                     android:visibility="gone">
 
                     <android.support.v7.widget.RecyclerView
@@ -132,7 +138,7 @@
             </RelativeLayout>
 
             <Button
-                android:id="@+id/notification_settings_fragment_btn_send"
+                android:id="@+id/notification_settings_fragment_btn_save"
                 style="@style/btn"
                 android:layout_width="@dimen/dim_220dp"
                 android:layout_height="@dimen/dim_40dp"

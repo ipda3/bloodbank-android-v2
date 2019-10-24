@@ -330,7 +330,7 @@ public class Validation {
 
     public static boolean validationPassword(TextInputLayout password, int length, String errorText) {
 
-        if (validationLength(password, errorText, length) || validationStringIsCharAndNumber(password, errorText)) {
+        if (validationLength(password, errorText, length)) {
             return true;
         } else {
             return false;

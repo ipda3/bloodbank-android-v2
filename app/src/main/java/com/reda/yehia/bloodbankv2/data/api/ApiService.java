@@ -2,11 +2,19 @@ package com.reda.yehia.bloodbankv2.data.api;
 
 
 import com.reda.yehia.bloodbankv2.data.model.client.Client;
+import com.reda.yehia.bloodbankv2.data.model.contactUs.ContactUs;
 import com.reda.yehia.bloodbankv2.data.model.donation.createNewDonation.CreateNewDonation;
 import com.reda.yehia.bloodbankv2.data.model.donation.donationRequests.DonationRequests;
 import com.reda.yehia.bloodbankv2.data.model.generalResponse.GeneralResponse;
 import com.reda.yehia.bloodbankv2.data.model.notification.getAllNotification.Notification;
 import com.reda.yehia.bloodbankv2.data.model.notification.getNotificationCount.NotificationCount;
+import com.reda.yehia.bloodbankv2.data.model.notificationSettings.NotificationSettings;
+import com.reda.yehia.bloodbankv2.data.model.post.postToggleFavourite.PostToggleFavourite;
+import com.reda.yehia.bloodbankv2.data.model.post.posts.Posts;
+import com.reda.yehia.bloodbankv2.data.model.resetpassword.ResetPassword;
+import com.reda.yehia.bloodbankv2.data.model.setting.Setting;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -59,6 +67,17 @@ public interface ApiService {
                                 @Field("blood_type_id") int bloodTypeId,
                                 @Field("api_token") String apiToken);
 
+    @POST("reset-password")
+    @FormUrlEncoded
+    Call<ResetPassword> forgetPassword(@Field("phone") String phone);
+
+    @POST("new-password")
+    @FormUrlEncoded
+    Call<GeneralResponse> newPassword(@Field("pin_code") String pin_code,
+                                      @Field("password") String password,
+                                      @Field("password_confirmation") String password_confirmation,
+                                      @Field("phone") String phone);
+
     @GET("donation-requests")
     Call<DonationRequests> getDonationRequests(@Query("api_token") String apiToken,
                                                @Query("page") int page);
@@ -95,4 +114,40 @@ public interface ApiService {
     @GET("notifications-count")
     Call<NotificationCount> getNotificationsCounter(@Query("api_token") String apiToken);
 
+    @GET("posts")
+    Call<Posts> getPosts(@Query("api_token") String api_token,
+                         @Query("page") int page);
+
+    @GET("posts")
+    Call<Posts> getPostFilter(@Query("api_token") String api_token,
+                              @Query("keyword") String keyword,
+                              @Query("page") int page,
+                              @Query("category_id") int category_id);
+
+    @GET("my-favourites")
+    Call<Posts> getFavouritesList(@Query("api_token") String api_token,
+                                  @Query("page") int page);
+
+    @POST("post-toggle-favourite")
+    @FormUrlEncoded
+    Call<PostToggleFavourite> getPostToggleFavourite(@Field("post_id") int post_id,
+                                                     @Field("api_token") String api_token);
+
+    @POST("contact")
+    @FormUrlEncoded
+    Call<ContactUs> contactUs(@Field("title") String title,
+                              @Field("message") String message,
+                              @Field("api_token") String api_token);
+
+    @GET("settings")
+    Call<Setting> getSettings(@Query("api_token") String api_token);
+
+    @POST("notifications-settings")
+    @FormUrlEncoded
+    Call<NotificationSettings> getNotificationSettings(@Field("api_token") String api_tokens);
+    @POST("notifications-settings")
+    @FormUrlEncoded
+    Call<NotificationSettings> setNotificationSettings(@Field("api_token") String api_token,
+                                                       @Field("governorates[]") List<Integer> governorates,
+                                                       @Field("blood_types[]") List<Integer> blood_types);
 }

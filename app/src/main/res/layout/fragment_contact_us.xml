@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dim_8dp"
-                android:layout_marginTop="@dimen/dim_8dp"
+                android:layout_marginTop="@dimen/dim_16dp"
                 android:text="@string/phone"
                 android:textColor="@color/txt_color"
                 android:textSize="@dimen/txt_20sp" />
@@ -43,7 +43,6 @@
                 android:layout_marginEnd="@dimen/dim_8dp"
                 android:drawableStart="@drawable/ic_mobile_solid"
                 android:drawablePadding="@dimen/dim_8dp"
-                android:text="01270351728"
                 android:textColor="@color/txt_color3"
                 android:textSize="@dimen/txt_18sp" />
 
@@ -53,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/contact_us_fragment_tv_phone_number"
                 android:layout_marginStart="@dimen/dim_8dp"
-                android:layout_marginTop="@dimen/dim_12dp"
+                android:layout_marginTop="@dimen/dim_16dp"
                 android:text="@string/email"
                 android:textColor="@color/txt_color"
                 android:textSize="@dimen/txt_20sp" />
@@ -78,7 +77,6 @@
                 android:layout_marginEnd="@dimen/dim_8dp"
                 android:drawableStart="@drawable/ic_email_solid"
                 android:drawablePadding="@dimen/dim_8dp"
-                android:text="amrramadan888@gmail.com"
                 android:textColor="@color/txt_color3"
                 android:textSize="@dimen/txt_18sp" />
 
@@ -105,7 +103,7 @@
                 <RelativeLayout
                     android:id="@+id/contact_us_fragment_rel_instagram"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dim_64dp"
+                    android:layout_height="@dimen/dim_56dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:background="@color/instagram"
@@ -121,7 +119,7 @@
                 <RelativeLayout
                     android:id="@+id/contact_us_fragment_rel_facebook"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dim_64dp"
+                    android:layout_height="@dimen/dim_56dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:background="@color/face"
@@ -137,7 +135,7 @@
                 <RelativeLayout
                     android:id="@+id/contact_us_fragment_rel_youtube"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dim_64dp"
+                    android:layout_height="@dimen/dim_56dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:background="@color/youtube"
@@ -153,7 +151,7 @@
                 <RelativeLayout
                     android:id="@+id/contact_us_fragment_rel_twitter"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/dim_64dp"
+                    android:layout_height="@dimen/dim_56dp"
                     android:layout_columnWeight="1"
                     android:layout_gravity="fill_horizontal"
                     android:background="@color/twitter"
@@ -180,8 +178,7 @@
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/message_title"
-                    android:inputType="phone" />
+                    android:hint="@string/message_title" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -197,8 +194,7 @@
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/message_content"
-                    android:inputType="phone" />
+                    android:hint="@string/message_content" />
 
             </android.support.design.widget.TextInputLayout>
 
