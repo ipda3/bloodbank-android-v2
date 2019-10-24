@@ -29,6 +29,7 @@ import retrofit2.Response;
 
 import static com.reda.yehia.bloodbankv2.data.api.RetrofitClient.getClient;
 import static com.reda.yehia.bloodbankv2.data.local.SharedPreferencesManger.loadUserData;
+import static com.reda.yehia.bloodbankv2.view.activity.MapsActivity.hospital_address;
 import static com.reda.yehia.bloodbankv2.view.activity.MapsActivity.latitude;
 import static com.reda.yehia.bloodbankv2.view.activity.MapsActivity.longitude;
 import static com.reda.yehia.mirvalidation.Validation.validationLength;
@@ -196,5 +197,13 @@ public class CreateDonationFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (hospital_address == null) {
+            createDonationFragmentTilHospitalAddress.getEditText().setText(hospital_address);
+        }
     }
 }
