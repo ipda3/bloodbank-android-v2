@@ -1,70 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dim_48dp"
-        android:layout_marginStart="@dimen/dim_8dp"
-        android:layout_marginTop="@dimen/dim_8dp"
-        android:layout_marginEnd="@dimen/dim_8dp"
-        android:orientation="horizontal">
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:background="@drawable/half_circle_left">
+            android:id="@+id/posts_favourites_list_Fragment_lin_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dim_40dp"
+            android:layout_marginStart="@dimen/dim_8dp"
+            android:layout_marginTop="@dimen/dim_8dp"
+            android:layout_marginEnd="@dimen/dim_8dp"
+            android:orientation="horizontal">
 
-            <Spinner
-                android:id="@+id/posts_favourites_list_Fragment_sp_categories"
-                style="@style/text_input_edit"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal" />
+                android:layout_weight="3"
+                android:background="@drawable/half_circle_left">
+
+                <Spinner
+                    android:id="@+id/posts_favourites_list_Fragment_sp_categories"
+                    style="@style/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dim_2dp"
+                android:layout_marginEnd="@dimen/dim_2dp"
+                android:layout_weight="4"
+                android:background="@drawable/shape_grey_solid">
+
+                <EditText
+                    android:id="@+id/posts_favourites_list_Fragment_et_keyword"
+                    style="@style/text_input_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dim_1dp"
+                    android:layout_marginEnd="@dimen/dim_1dp"
+                    android:hint="@string/search_keyword" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/half_circle_right">
+
+                <ImageView
+                    android:id="@+id/posts_favourites_list_Fragment_iv_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_search_red" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/dim_2dp"
-            android:layout_marginEnd="@dimen/dim_2dp"
-            android:layout_weight="4"
-            android:background="@drawable/shape_grey_solid">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/posts_favourites_list_Fragment_sr_refresh_posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-            <EditText
-                style="@style/text_input_edit"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/dim_1dp"
-                android:layout_marginEnd="@dimen/dim_1dp"
-                android:hint="@string/search_keyword" />
+                android:layout_height="match_parent">
 
-        </LinearLayout>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/Sfl_ShimmerFrameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shimmer_duration="1000">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/half_circle_right">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/posts_favourites_list_Fragment_iv_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_search_solid" />
+                        <include layout="@layout/posts_favourites_shimmer" />
 
-        </RelativeLayout>
+                        <include layout="@layout/posts_favourites_shimmer" />
+
+                        <include layout="@layout/posts_favourites_shimmer" />
+
+                        <include layout="@layout/posts_favourites_shimmer" />
+
+                        <include layout="@layout/posts_favourites_shimmer" />
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/posts_favourites_list_Fragment_rv_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/load_more"
+                    android:layout_marginTop="@dimen/dim_8dp"
+                    android:layout_marginBottom="@dimen/dim_8dp"/>
+
+                <include
+                    layout="@layout/item_load_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true" />
+
+                <include layout="@layout/error" />
+
+            </RelativeLayout>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/posts_favourites_list_Fragment_tv_no_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="no results"
+        android:layout_centerInParent="true"
+        android:textSize="@dimen/txt_24sp"
+        android:textColor="@color/txt_color2"
+        android:visibility="gone"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/posts_favourites_list_Fragment_rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dim_8dp" />
-</LinearLayout>
+</RelativeLayout>

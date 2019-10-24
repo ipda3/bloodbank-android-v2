@@ -81,10 +81,17 @@
     <string name="favourites">favourites</string>
     <string name="contact_us">contact us</string>
     <string name="about_app">about app</string>
-    <string name="rate_app">raet on play store</string>
+    <string name="rate_app">rate on play store</string>
     <string name="notifications_settings">notifications settings</string>
     <string name="sign_out">sign out</string>
     <string name="search_keyword">enter search keyword</string>
+    <string name="select_category">select category</string>
+    <string name="add_to_favourite">added to favourites</string>
+    <string name="remove_from_favourite">removed from favourites</string>
+    <string name="enter_message_title">enter your message title</string>
+    <string name="enter_message_content">enter your message content</string>
+    <string name="more">more</string>
+    <string name="logout">want to log out ??</string>
     <string name="create_donation">Create donation</string>
     <string name="select_location">Select location</string>
 

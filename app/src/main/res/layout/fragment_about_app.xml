@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/about_app_fragment_iv_about_app"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/dim_24dp"
+        android:background="@drawable/shape_grey_solid"
+        android:textColor="@color/txt_color2"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/txt_24sp"
+        android:padding="@dimen/dim_16dp"/>
+</RelativeLayout>
