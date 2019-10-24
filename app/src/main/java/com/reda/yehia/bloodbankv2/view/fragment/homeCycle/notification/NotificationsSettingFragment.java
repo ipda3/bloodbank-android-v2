@@ -76,7 +76,7 @@ public class NotificationsSettingFragment extends BaseFragment {
         clientData = loadUserData(getActivity());
         setUpActivity();
 
-        homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setNavigation(View.GONE, R.id.home_cycle_activity_rb_home);
         homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.notifications_settings), new View.OnClickListener() {
             @Override
             public void onClick(View view) {

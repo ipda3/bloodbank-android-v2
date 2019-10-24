@@ -49,14 +49,14 @@ public class AboutAppFragment extends BaseFragment {
         setUpActivity();
 
 
-            homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
-            homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.about_app), new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    onBack();
-                }
-            });
-            settings();
+        homeCycleActivity.setNavigation(View.GONE, R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.about_app), new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBack();
+            }
+        });
+        settings();
         return view;
     }
 

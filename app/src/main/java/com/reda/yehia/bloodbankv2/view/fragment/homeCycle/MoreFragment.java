@@ -40,7 +40,7 @@ public class MoreFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         setUpActivity();
 
-        homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setNavigation(View.VISIBLE,R.id.home_cycle_activity_rb_home);
         homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.more), new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -8,13 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.reda.yehia.bloodbankv2.R;
-import com.reda.yehia.bloodbankv2.data.api.ApiService;
 import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
 import com.reda.yehia.bloodbankv2.data.model.contactUs.ContactUs;
-import com.reda.yehia.bloodbankv2.data.model.generalResponse.GeneralResponse;
-import com.reda.yehia.bloodbankv2.data.model.post.posts.Posts;
 import com.reda.yehia.bloodbankv2.data.model.setting.Setting;
-import com.reda.yehia.bloodbankv2.utils.HelperMethod;
 import com.reda.yehia.bloodbankv2.utils.network.InternetState;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 
@@ -62,14 +58,14 @@ public class ContactUsFragment extends BaseFragment {
         settings();
         setUpActivity();
 
-        homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setNavigation(View.GONE, R.id.home_cycle_activity_rb_home);
         homeCycleActivity.setToolBar(View.VISIBLE,
                 getString(R.string.contact_us), new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBack();
-            }
-        });
+                    @Override
+                    public void onClick(View view) {
+                        onBack();
+                    }
+                });
         return view;
     }
 

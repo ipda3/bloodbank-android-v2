@@ -21,7 +21,6 @@ import com.reda.yehia.bloodbankv2.adapter.SpinnerAdapter;
 import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
 import com.reda.yehia.bloodbankv2.data.model.post.posts.Posts;
 import com.reda.yehia.bloodbankv2.data.model.post.posts.PostsData;
-import com.reda.yehia.bloodbankv2.utils.HelperMethod;
 import com.reda.yehia.bloodbankv2.utils.OnEndLess;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.MoreFragment;
@@ -100,7 +99,7 @@ public class PostsAndFavoritesListFragment extends BaseFragment {
         if (favourites) {
             postsFavouritesListFragmentLinToolbar.setVisibility(View.GONE);
 
-            homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+            homeCycleActivity.setNavigation(View.GONE, R.id.home_cycle_activity_rb_home);
             homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.favourites), new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
