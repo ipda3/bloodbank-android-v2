@@ -85,7 +85,7 @@ public interface ApiService {
                                               @Field("longitude") double longitude);
 
     @GET("donation-request")
-    Call<DonationRequests> getDonationRequestData(@Query("api_token") String apiToken,
+    Call<CreateNewDonation> getDonationRequestData(@Query("api_token") String apiToken,
                                                   @Query("donation_id") int donationId);
 
     @GET("notifications")

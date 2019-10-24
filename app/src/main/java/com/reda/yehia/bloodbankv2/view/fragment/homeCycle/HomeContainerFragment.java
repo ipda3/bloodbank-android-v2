@@ -2,7 +2,6 @@ package com.reda.yehia.bloodbankv2.view.fragment.homeCycle;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.post.PostsAndFavorites
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-
-import static com.reda.yehia.bloodbankv2.utils.HelperMethod.replaceFragment;
 
 public class HomeContainerFragment extends BaseFragment {
 
@@ -61,7 +58,7 @@ public class HomeContainerFragment extends BaseFragment {
         homeContainerFragmentVpViewPager.setPagingEnabled(true);
 
         setUpActivity();
-        homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setNavigation(View.VISIBLE, R.id.home_cycle_activity_rb_home);
         homeCycleActivity.setToolBar(View.GONE, null, null);
 
         return view;

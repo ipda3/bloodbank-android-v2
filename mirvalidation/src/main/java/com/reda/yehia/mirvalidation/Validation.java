@@ -78,7 +78,7 @@ public class Validation {
     }
 
     public static boolean validationLength(TextInputLayout text, String errorText, int length) {
-        if (text.getEditText().length() <= length) {
+        if (text.getEditText().length() < length) {
             text.setError(errorText);
             return false;
         } else {
@@ -330,7 +330,7 @@ public class Validation {
 
     public static boolean validationPassword(TextInputLayout password, int length, String errorText) {
 
-        if (validationLength(password, errorText, length) || validationStringIsCharAndNumber(password, errorText)) {
+        if (validationLength(password, errorText, length)) {
             return true;
         } else {
             return false;

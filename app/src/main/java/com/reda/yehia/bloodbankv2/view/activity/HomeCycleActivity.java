@@ -15,6 +15,7 @@ import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
 import com.reda.yehia.bloodbankv2.data.model.notification.getNotificationCount.NotificationCount;
 import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.HomeContainerFragment;
 import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.MoreFragment;
+import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.donation.DonationsListFragment;
 import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.notification.NotificationsFragment;
 import com.reda.yehia.bloodbankv2.view.fragment.userCycle.RegistersAndEditProfileFragment;
 
@@ -99,7 +100,7 @@ public class HomeCycleActivity extends BaseActivity {
 
         getNotificationCount();
 
-        setNavigation(R.id.home_cycle_activity_rb_home);
+        setNavigation(View.VISIBLE, R.id.home_cycle_activity_rb_home);
 
     }
 
@@ -146,23 +147,29 @@ public class HomeCycleActivity extends BaseActivity {
 
     }
 
-    public void setNavigation(int id) {
-        homeCycleActivityRgNavigation.check(id);
+    public void setNavigation(int visibility, int id) {
 
-        switch (id) {
-            case R.id.home_cycle_activity_rb_home:
-                setSelection(0);
-                break;
-            case R.id.home_cycle_activity_rb_profile:
-                setSelection(1);
-                break;
-            case R.id.home_cycle_activity_rb_notification:
-                setSelection(2);
-                break;
-            case R.id.home_cycle_activity_rb_more:
-                setSelection(3);
-                break;
+        homeCycleActivityRgNavigation.setVisibility(visibility);
+
+        if (id!= 0) {
+            homeCycleActivityRgNavigation.check(id);
+
+            switch (id) {
+                case R.id.home_cycle_activity_rb_home:
+                    setSelection(0);
+                    break;
+                case R.id.home_cycle_activity_rb_profile:
+                    setSelection(1);
+                    break;
+                case R.id.home_cycle_activity_rb_notification:
+                    setSelection(2);
+                    break;
+                case R.id.home_cycle_activity_rb_more:
+                    setSelection(3);
+                    break;
+            }
         }
+
 
     }
 

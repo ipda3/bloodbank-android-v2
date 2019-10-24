@@ -85,7 +85,8 @@
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    app:errorTextAppearance="@style/error_appearance">
 
                     <TextView
                         android:id="@+id/registers_and_edit_profile_fragment_tv_brd"
@@ -104,7 +105,8 @@
                     style="@style/text_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    app:errorTextAppearance="@style/error_appearance">
 
                     <TextView
                         android:id="@+id/registers_and_edit_profile_fragment_tv_last_donation_date"

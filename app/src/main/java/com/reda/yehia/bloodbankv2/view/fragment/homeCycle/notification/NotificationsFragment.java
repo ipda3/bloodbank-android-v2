@@ -80,7 +80,7 @@ public class NotificationsFragment extends BaseFragment {
 
         setUpActivity();
 
-        homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+        homeCycleActivity.setNavigation(View.VISIBLE, R.id.home_cycle_activity_rb_home);
         homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.notification), new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -132,6 +132,7 @@ public class NotificationsFragment extends BaseFragment {
     private void getNotification(int page) {
 
         if (page == 1) {
+            errorSubView.setVisibility(View.GONE);
             notificationsFragmentSFlShimmerDonations.startShimmer();
             notificationsFragmentSFlShimmerDonations.setVisibility(View.VISIBLE);
         }
@@ -193,16 +194,18 @@ public class NotificationsFragment extends BaseFragment {
     }
 
     private void setError(String errorTitleTxt) {
-        View.OnClickListener action = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reInit();
-                getNotification(1);
+        if (notificationsDataList.size() == 0) {
+            View.OnClickListener action = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    reInit();
+                    getNotification(1);
 
-            }
-        };
-        setRecycleTool(baseActivity, errorSubView, errorImage, errorTitle, errorAction, R.drawable.ic_no_notification
-                , errorTitleTxt, getString(R.string.reload), action);
+                }
+            };
+            setRecycleTool(baseActivity, errorSubView, errorImage, errorTitle, errorAction, R.drawable.ic_no_notification
+                    , errorTitleTxt, getString(R.string.reload), action);
+        }
     }
 
     private void reInit() {

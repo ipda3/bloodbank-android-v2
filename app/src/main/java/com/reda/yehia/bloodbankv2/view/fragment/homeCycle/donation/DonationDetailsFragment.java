@@ -20,8 +20,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.reda.yehia.bloodbankv2.R;
 import com.reda.yehia.bloodbankv2.data.model.client.ClientData;
+import com.reda.yehia.bloodbankv2.data.model.donation.createNewDonation.CreateNewDonation;
 import com.reda.yehia.bloodbankv2.data.model.donation.donationRequests.DonationData;
-import com.reda.yehia.bloodbankv2.data.model.donation.donationRequests.DonationRequests;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 import com.reda.yehia.mirtoast.ToastCreator;
 
@@ -40,9 +40,6 @@ import static com.reda.yehia.bloodbankv2.utils.network.InternetState.isConnected
 
 public class DonationDetailsFragment extends BaseFragment {
 
-
-    @BindView(R.id.toolbar_title)
-    TextView toolbarTitle;
     @BindView(R.id.donation_details_fragment_tv_name)
     TextView donationDetailsFragmentTvName;
     @BindView(R.id.donation_details_fragment_tv_age)
@@ -84,7 +81,9 @@ public class DonationDetailsFragment extends BaseFragment {
         donationDetailsFragmentMvMap.onCreate(savedInstanceState);
 
         getDonation();
-        setData();
+
+        setUpActivity();
+        homeCycleActivity.setNavigation(View.GONE, 0);
 
         return view;
     }
@@ -95,13 +94,16 @@ public class DonationDetailsFragment extends BaseFragment {
 
         if (isConnected(getActivity())) {
 
-            getClient().getDonationRequestData(clientData.getApiToken(), donationId).enqueue(new Callback<DonationRequests>() {
+            getClient().getDonationRequestData(clientData.getApiToken(), donationId).enqueue(new Callback<CreateNewDonation>() {
                 @Override
-                public void onResponse(Call<DonationRequests> call, Response<DonationRequests> response) {
+                public void onResponse(Call<CreateNewDonation> call, Response<CreateNewDonation> response) {
                     try {
 
                         donationDetailsFragmentSFlShimmerDonations.stopShimmer();
                         donationDetailsFragmentSFlShimmerDonations.setVisibility(View.GONE);
+
+                        donationData = response.body().getData();
+                        setData();
 
                     } catch (Exception e) {
 
@@ -109,7 +111,7 @@ public class DonationDetailsFragment extends BaseFragment {
                 }
 
                 @Override
-                public void onFailure(Call<DonationRequests> call, Throwable t) {
+                public void onFailure(Call<CreateNewDonation> call, Throwable t) {
                     ToastCreator.onCreateErrorToast(getActivity(), getActivity().getString(R.string.error));
                 }
             });
@@ -121,7 +123,15 @@ public class DonationDetailsFragment extends BaseFragment {
 
     @SuppressLint("SetTextI18n")
     private void setData() {
-        toolbarTitle.setText(getString(R.string.donation) + " :- " + donationData.getPatientName());
+
+        homeCycleActivity.setToolBar(View.VISIBLE, getString(R.string.donation) + " :- " + donationData.getPatientName()
+                , new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBack();
+                    }
+                });
+
         donationDetailsFragmentTvName.setText(getString(R.string.name) + " :- " + donationData.getPatientName());
         donationDetailsFragmentTvAge.setText(getString(R.string.age) + " :- " + donationData.getPatientAge());
         donationDetailsFragmentTvBloodType.setText(getString(R.string.blood_type) + " :- " + donationData.getBloodType().getName());
@@ -142,16 +152,22 @@ public class DonationDetailsFragment extends BaseFragment {
         donationDetailsFragmentMvMap.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                MarkerOptions currentUserLocation = new MarkerOptions();
-                currentUserLocation.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_alt_solid));
+                try {
 
-                LatLng currentUserLatLang = new LatLng(Double.parseDouble(donationData.getLatitude()), Double.parseDouble(donationData.getLongitude()));
-                currentUserLocation.position(currentUserLatLang);
-                googleMap.addMarker(currentUserLocation);
-                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLang, 16));
+                    MarkerOptions currentUserLocation = new MarkerOptions();
+                    currentUserLocation.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker_alt_solid));
 
-                float zoom = 10;
-                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLang, zoom));
+                    LatLng currentUserLatLang = new LatLng(Double.parseDouble(donationData.getLatitude()), Double.parseDouble(donationData.getLongitude()));
+                    currentUserLocation.position(currentUserLatLang);
+                    googleMap.addMarker(currentUserLocation);
+                    googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLang, 16));
+
+                    float zoom = 10;
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentUserLatLang, zoom));
+
+                } catch (Exception e) {
+
+                }
             }
         });
     }
@@ -162,12 +178,9 @@ public class DonationDetailsFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.toolbar_back, R.id.donation_details_fragment_btn_call})
+    @OnClick({R.id.donation_details_fragment_btn_call})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.toolbar_back:
-                onBack();
-                break;
             case R.id.donation_details_fragment_btn_call:
                 onPermission(getActivity());
 

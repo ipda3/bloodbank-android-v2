@@ -134,7 +134,7 @@ public class DonationAdapter extends RecyclerView.Adapter<DonationAdapter.ViewHo
 
                     DonationDetailsFragment donationDetailsFragment = new DonationDetailsFragment();
                     donationDetailsFragment.donationId = donationDataList.get(position).getId();
-                    replaceFragment(activity.getSupportFragmentManager(), R.id.frame, donationDetailsFragment);
+                    replaceFragment(activity.getSupportFragmentManager(), R.id.home_cycle_activity_fl_home_frame, donationDetailsFragment);
 
                     break;
                 case R.id.donation_adapter_tv_call:

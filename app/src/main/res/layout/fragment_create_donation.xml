@@ -6,8 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,12 +22,14 @@
                 style="@style/text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dim_16dp">
+                android:layout_marginTop="@dimen/dim_16dp"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
                     android:hint="@string/name" />
 
             </android.support.design.widget.TextInputLayout>
@@ -38,7 +38,8 @@
                 android:id="@+id/create_donation_fragment_til_age"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
@@ -68,7 +69,8 @@
                 android:id="@+id/create_donation_fragment_til_bags_number"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
@@ -83,14 +85,14 @@
                 android:id="@+id/create_donation_fragment_til_hospital_name"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hospital_name"
-                    android:inputType="number" />
+                    android:hint="@string/hospital_name" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -130,32 +132,43 @@
             </RelativeLayout>
 
             <LinearLayout
-                style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dim_40dp"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/create_donation_fragment_sp_government"
-                    style="@style/spinner"
+                <LinearLayout
+                    style="@style/text_input"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal" />
+                    android:layout_height="@dimen/dim_40dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <Spinner
+                        android:id="@+id/create_donation_fragment_sp_government"
+                        style="@style/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" />
 
-            <LinearLayout
-                style="@style/text_input"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dim_40dp"
-                android:orientation="horizontal">
+                </LinearLayout>
 
-                <Spinner
-                    android:id="@+id/create_donation_fragment_sp_city"
-                    style="@style/spinner"
+                <LinearLayout
+                    android:id="@+id/create_donation_fragment_ll_city_container"
+                    style="@style/text_input"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center_horizontal" />
+                    android:layout_height="@dimen/dim_40dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Spinner
+                        android:id="@+id/create_donation_fragment_sp_city"
+                        style="@style/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_horizontal" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -163,7 +176,8 @@
                 android:id="@+id/create_donation_fragment_til_phone"
                 style="@style/text_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"
@@ -179,7 +193,8 @@
                 style="@style/text_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/dim_100dp">
+                android:minHeight="@dimen/dim_100dp"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <android.support.design.widget.TextInputEditText
                     style="@style/text_input_edit"

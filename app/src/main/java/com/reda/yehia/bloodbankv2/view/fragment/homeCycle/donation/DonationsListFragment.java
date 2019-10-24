@@ -23,7 +23,6 @@ import com.reda.yehia.bloodbankv2.data.model.donation.donationRequests.DonationD
 import com.reda.yehia.bloodbankv2.data.model.donation.donationRequests.DonationRequests;
 import com.reda.yehia.bloodbankv2.utils.CustomViewPager;
 import com.reda.yehia.bloodbankv2.utils.OnEndLess;
-import com.reda.yehia.bloodbankv2.utils.OnSwipeTouchListener;
 import com.reda.yehia.bloodbankv2.view.fragment.BaseFragment;
 import com.reda.yehia.bloodbankv2.view.fragment.homeCycle.HomeContainerFragment;
 
@@ -100,37 +99,41 @@ public class DonationsListFragment extends BaseFragment {
 
         clientData = loadUserData(getActivity());
 
-        bloodTypesAdapter = new SpinnerAdapter(getActivity());
-        getSpinnerData(getActivity(), donationsListFragmentSpBloodTypes, bloodTypesAdapter, getString(R.string.select_blood_type),
-                getClient().getBloodTypes(), null, 0, false);
+        if (bloodTypesAdapter != null) {
+            bloodTypesAdapter = new SpinnerAdapter(getActivity());
+            getSpinnerData(getActivity(), donationsListFragmentSpBloodTypes, bloodTypesAdapter, getString(R.string.select_blood_type),
+                    getClient().getBloodTypes(), null, 0, false);
+        }
 
-        gaviermentAdapter = new SpinnerAdapter(getActivity());
-        getSpinnerData(getActivity(), donationsListFragmentSpGovernment, gaviermentAdapter, getString(R.string.select_government),
-                getClient().getGovernorates(), null, 0, false);
+        if (gaviermentAdapter != null) {
+            gaviermentAdapter = new SpinnerAdapter(getActivity());
+            getSpinnerData(getActivity(), donationsListFragmentSpGovernment, gaviermentAdapter, getString(R.string.select_government),
+                    getClient().getGovernorates(), null, 0, false);
+        }
 
         init();
 
-        donationsListFragmentRvDonations.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
-            public void onSwipeTop() {
-            }
-
-            public void onSwipeRight() {
-                if (lang.equals("en")) {
-                    homeContainerFragmentVpViewPager.setPagingEnabled(true);
-                    homeContainerFragmentVpViewPager.setCurrentItem(0);
-                }
-            }
-
-            public void onSwipeLeft() {
-                if (lang.equals("ar")) {
-                    homeContainerFragmentVpViewPager.setPagingEnabled(true);
-                    homeContainerFragmentVpViewPager.setCurrentItem(0);
-                }
-            }
-
-            public void onSwipeBottom() {
-            }
-        });
+//        donationsListFragmentRvDonations.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+//            public void onSwipeTop() {
+//            }
+//
+//            public void onSwipeRight() {
+//                if (lang.equals("en")) {
+//                    homeContainerFragmentVpViewPager.setPagingEnabled(true);
+//                    homeContainerFragmentVpViewPager.setCurrentItem(0);
+//                }
+//            }
+//
+//            public void onSwipeLeft() {
+//                if (lang.equals("ar")) {
+//                    homeContainerFragmentVpViewPager.setPagingEnabled(true);
+//                    homeContainerFragmentVpViewPager.setCurrentItem(0);
+//                }
+//            }
+//
+//            public void onSwipeBottom() {
+//            }
+//        });
 
         return view;
     }
@@ -165,7 +168,12 @@ public class DonationsListFragment extends BaseFragment {
         donationAdapter = new DonationAdapter(getActivity(), donationDataList);
         donationsListFragmentRvDonations.setAdapter(donationAdapter);
 
-        getDonations(1);
+        if (donationDataList.size() == 0) {
+            getDonations(1);
+        } else {
+            donationsListFragmentSFlShimmerDonations.stopShimmer();
+            donationsListFragmentSFlShimmerDonations.setVisibility(View.GONE);
+        }
 
         donationsListFragmentSrRefreshDonations.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -189,23 +197,30 @@ public class DonationsListFragment extends BaseFragment {
 
     @Override
     public void onDestroyView() {
-        homeContainerFragmentVpViewPager.setHorizontalScrollBarEnabled(true);
         super.onDestroyView();
         unbinder.unbind();
     }
 
-    @OnClick(R.id.donations_list_Fragment_rl_filter)
-    public void onViewClicked() {
+    @OnClick({R.id.donations_list_Fragment_rl_filter, R.id.donations_list_Fragment_f_a_btn_create_donations})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.donations_list_Fragment_rl_filter:
 
-        if (bloodTypesAdapter.selectedId == 0 && gaviermentAdapter.selectedId == 0 && Filter) {
-            Filter = false;
+                if (bloodTypesAdapter.selectedId == 0 && gaviermentAdapter.selectedId == 0 && Filter) {
+                    Filter = false;
 
-            getDonations(1);
-        } else {
-            onFilter(1);
+                    getDonations(1);
+                } else {
+                    onFilter(1);
+                }
+
+                break;
+            case R.id.donations_list_Fragment_f_a_btn_create_donations:
+
+                replaceFragment(getActivity().getSupportFragmentManager(), R.id.home_cycle_activity_fl_home_frame, new CreateDonationFragment());
+
+                break;
         }
-
-
     }
 
     private void onFilter(int page) {
@@ -222,6 +237,7 @@ public class DonationsListFragment extends BaseFragment {
         errorSubView.setVisibility(View.GONE);
         if (page == 1) {
             reInit();
+            errorSubView.setVisibility(View.GONE);
             donationsListFragmentSFlShimmerDonations.startShimmer();
             donationsListFragmentSFlShimmerDonations.setVisibility(View.VISIBLE);
         }
@@ -283,7 +299,6 @@ public class DonationsListFragment extends BaseFragment {
 
         } else {
             try {
-                donationsListFragmentSFlShimmerDonations.onDetachedFromWindow();
                 donationsListFragmentSFlShimmerDonations.stopShimmer();
                 donationsListFragmentSFlShimmerDonations.setVisibility(View.GONE);
                 loadMore.setVisibility(View.GONE);
@@ -297,7 +312,6 @@ public class DonationsListFragment extends BaseFragment {
 
     }
 
-
     private void reInit() {
         onEndLess.previousTotal = 0;
         onEndLess.current_page = 1;
@@ -308,20 +322,22 @@ public class DonationsListFragment extends BaseFragment {
     }
 
     private void setError(String errorTitleTxt) {
-        View.OnClickListener action = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if (donationDataList.size() == 0) {
+            View.OnClickListener action = new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                if (Filter) {
-                    onFilter(1);
-                } else {
-                    getDonations(1);
+                    if (Filter) {
+                        onFilter(1);
+                    } else {
+                        getDonations(1);
+                    }
+
                 }
-
-            }
-        };
-        setRecycleTool(baseActivity, errorSubView, errorImage, errorTitle, errorAction, R.drawable.ic_transfusion
-                , errorTitleTxt, getString(R.string.reload), action);
+            };
+            setRecycleTool(baseActivity, errorSubView, errorImage, errorTitle, errorAction, R.drawable.ic_transfusion
+                    , errorTitleTxt, getString(R.string.reload), action);
+        }
     }
 
     @Override

@@ -23,15 +23,32 @@
             android:layout_width="@dimen/dim_40dp"
             android:layout_height="@dimen/dim_40dp"
             android:layout_margin="@dimen/dim_8dp"
-            android:background="@drawable/shape_circil" />
+            android:background="@drawable/ic_info_circle_solid" />
 
-        <ImageButton
-            android:id="@+id/donation_adapter_tv_call"
+        <RelativeLayout
             android:layout_width="@dimen/dim_40dp"
             android:layout_height="@dimen/dim_40dp"
-            android:layout_margin="@dimen/dim_8dp"
-            android:background="@drawable/shape_circil" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/dim_8dp">
 
+            <ImageButton
+                android:layout_width="@dimen/dim_40dp"
+                android:layout_height="@dimen/dim_40dp"
+                android:background="@drawable/shape_circil_orange" />
+
+            <ImageButton
+                android:layout_width="@dimen/dim_35dp"
+                android:layout_height="@dimen/dim_35dp"
+                android:background="@null"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_call_white" />
+
+            <RelativeLayout
+                android:id="@+id/donation_adapter_tv_call"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
     </LinearLayout>
 
     <RelativeLayout

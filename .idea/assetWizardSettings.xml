@@ -29,8 +29,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_no_notification" />
-                            <entry key="sourceFile" value="$PROJECT_DIR$/../../oneDownLoads/sofra/Group49.svg" />
+                            <entry key="outputName" value="ic_plus_white" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../../oneDownLoads/sofra/plus-solid.svg" />
                           </map>
                         </option>
                       </PersistentState>

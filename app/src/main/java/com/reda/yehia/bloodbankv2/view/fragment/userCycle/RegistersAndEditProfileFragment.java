@@ -87,8 +87,8 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
     LinearLayout registersAndEditProfileFragmentLlSubViewBg;
 
     private SpinnerAdapter bloodTypesAdapter, governmentsAdapter, citiesAdapter;
-    private DateTxt birthdayDate, lastDonationDate;
     private int bloodTypesSelectedId = 0, governmentSelectedId = 0, citiesSelectedId = 0;
+    private DateTxt birthdayDate, lastDonationDate;
 
     private ClientData clientData;
     public boolean PROFILE = false;
@@ -110,7 +110,7 @@ public class RegistersAndEditProfileFragment extends BaseFragment {
             setUpActivity();
             clientData = loadUserData(getActivity());
             setUserData();
-            homeCycleActivity.setNavigation(R.id.home_cycle_activity_rb_home);
+            homeCycleActivity.setNavigation(View.VISIBLE, R.id.home_cycle_activity_rb_home);
             homeCycleActivity.setToolBar(View.GONE, null, null);
 
             registersAndEditProfileFragmentTvTitle.setBackgroundColor(getResources().getColor(R.color.txt_color2));
